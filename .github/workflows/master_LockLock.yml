@@ -52,5 +52,5 @@ jobs:
       with:
         app-name: 'LockLock'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_7f5f6920d22b4674ba3172e2da0d6b5c }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_c650cd733af249b591cd7103da1d9de9 }}
         package: .
