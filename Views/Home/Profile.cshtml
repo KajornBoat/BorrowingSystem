@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <style>
+       /*nav bar*/
+    
+  .userbutton{
+        padding: 3% 6% 3% 6%;        
+        text-align: center; 
+        color: #FFF;
+        border: 3px  solid ;
+        border-radius: 30px;
+        background-color: #D46C4E;
+        font-size:70%;
+        margin-left:-40%;
+    }
+
+    .nav {
+        padding-bottom: 3%;
+        margin-left:80%;
+        margin-top:-3%;
+        position:static;
+    }
+
+    .nav ul{
+        list-style: none;
+        text-align: center;
+        position: static;
+        padding: 0;
+        margin-top:-1%;
+        width:70%;
+    }
+
+       
+    .nav a{
+        text-decoration: none;
+        color: #000;
+        display: block;
+        padding-left: 1%;
+        border-bottom: none;
+        transition: .3s;
+    }
+    
+    #dropdown{
+
+        margin-top: 1.65%;
+        display:none;
+        position: absolute;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        background-color: #fff;
+        width:9%;
+        border: 1px solid #bbb; 
+        border-radius: 15px;
+    }
+
+    #dropdown li{
+        border-bottom: 0.3px solid #ddd;
+    }
+                
+    #dropdown li:first_child{
+        border-bottom: none;
+    }
+
+    .nav a:hover{
+        background-color: #E6E8ED;
+    }
+    .nav .firstlink:hover {
+        background-color: #E6E8ED;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+    }
+   .nav .lastlink:hover{
+        background-color: #E6E8ED;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+    }
+  
+    .itemnav {
+        width: 100%;
+    }
+
+
+    /*template*/
+    
+     .container2{
+        margin-top: 5%;
+        margin-left: 6%;
+        margin-bottom: 10%;
+        display:grid;
+        grid-column: 50% 50%;
+        
+    }
+    .container3{
+        display:grid;
+        grid-column: 25% 25% 25% 25%;
+        width: 100%;
+      }
+
+      
+       .item1{
+        margin-left:25%;
+        display:grid;
+        justify-content:center;
+        position:static;
+        width: 50%;
+       
+      }
+      .item3{
+         line-height:0;
+         grid-row-start:1;
+         float:left;
+         position:static;
+         
+      
+      }
+      .item4{
+        line-height:0;
+         grid-row-start:1;
+         float:left;
+         position:static;
+      
+      }
+
+       .item5{
+         line-height:0;
+         float: left;
+         position: center;
+         width:100%;
+         left:1%;
+      }
+      .item6{
+         
+         float: left;
+         position: static;
+         left : 30%;
+      }
+       .item7{
+      
+         float: center;
+         position: static;
+         right:1%;
+      }
+       
+      button {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+   }
+  
+
+.resizedTextbox {
+    width: 95%; 
+    height: 60%; 
+    }
+
+.Textbox_password {
+    width: 95%; 
+    height: 60%; 
+    background: #FAFBFF; 
+    text-align: center; 
+    border: 3px #E6E8ED solid;
+    border-radius: 6px;
+    color:#8F9095;
+    }
+
+  
+.resizedTextbox1 {
+    width: 80%; 
+    height: 60%;
+    }
+    
+.resizedTextbox2 {
+    width: 90%; 
+    height: 60%;
+    }
+
+.Myprofile{
+    display: block;
+    margin-left: 25%;
+    margin-right: auto;
+    width: 50%;
+    position: static;
+   
+}
+.profilepic{
+    width: 43%;
+    position: static;
+    grid-column-start:1;
+    margin-bottom:-5%;
+    margin-left:-12%;
+}
+ 
+.edit{
+    margin-top:10%;
+    margin-left:-2%;
+}
+
+.editpic{    
+    display: block;
+    width: 25%;
+    position: absolute;
+    top:72%;
+    left:82%;
+    border-top-left-radius: 80px;
+    border-top-right-radius: 100px;
+    border-bottom-right-radius: 100px;
+    border-bottom-left-radius: 110px;
+    
+}
+.nameandtell{
+    width: 100%;
+    float: center;
+    position: relative;
+    line-height:0.5;
+    grid-column-start:2;
+    right : 60%;
+    margin-top: 10%; 
+    margin-left: 15%;
+}
+     
+   </style>
+<title>Lock&Lock</title>
+</head>
+<body>
+<script>
+                function HoverOnDropdown() {
+                 var dropdown = document.getElementById("dropdown");
+                dropdown.style="display: inline-block;";
+                }
+
+                 function HoverOffDropdown() {
+                 var dropdown = document.getElementById("dropdown");
+                dropdown.style="display: none;";
+                }
+              
+                function ChangeColor(id) {
+                 var color = document.getElementById(id);
+                 color.style.color="#000";
+                }
+                function BackColor(id) {
+                 var color = document.getElementById(id);
+                 color.style.color="#8F9095";  
+                }
+                
+                function Change(id) {
+                 var color = document.getElementById(id);
+                 color.type="text";
+                 color.style.color="#000";
+                 check(id);
+                }
+
+                                             
+                function Back(id) {
+                var color = document.getElementById(id);
+                document.addEventListener("click", function(){
+                color.style.color="#8F9095";
+                color.type="password";});                 
+                }
+            
+</script>
+   
+     <div calss="itemnav" >
+    
+       <img src="~/img/NavBar.jpg"  width="100%" >
+        
+        <div class ="nav" onmouseleave=HoverOffDropdown()>
+        
+        <ul >                
+           <li id="first-li"><button class="userbutton" onmouseenter=HoverOnDropdown() ><b>Pimpida</b></button></li>
+        </ul>
+        <ul id="dropdown" onmouseleave=HoverOffDropdown()>
+                <li id ="dropdown_li"><a href="/Home/Profile" class="firstlink"><b>ประวัติส่วนตัว</b></a></li>
+                <li id="dropdown_li"><a href="/Home/History"><b>ประวัติการจอง</b></a></li>
+                <li id="dropdown_li"><a href="/Home/Chat"><b>Chat</b></a></li>
+                <li id="dropdown_li_lastchild"><a href="/Home/SignIn" class="lastlink"><b>Signout</b></a></li>
+        </ul >         
+        </div>
+     </div>        
+         <div class ="item1"> 
+            
+            <img src="~/img/MyProfile.jpg" class="Myprofile" style ="width:50%; height:auto; "  >
+         
+         <div class = "container2">
+          
+          
+            <div class = "profilepic">   
+                <img src="~/img/ProfilePic.jpg"  width="100%" height="auto" >
+            </div>            
+           
+                
+            <div class = "nameandtell">
+            <p id="username" style="color:#000;front-size:100%;"><b>Nim Pimpida</b></p>
+            <p id="tell" style="color:#8F9095;front-size:5%;"><b>081-234-5678</b></p>
+            </div>
+        </div>
+        <div class = "profileinfo">
+            <p  style="color:#000;text-size:2.5em;"><b><front size=10%>Name:  &nbsp;</front> </b>
+            <front size=3%><id="firstname" style="color:#8F9095;">Nim</front></p>
+            <p  style="color:#000;text-size:2.5em;"><b><front size=10%>Surname:  &nbsp;</front> </b>
+            <front size=3%><id="lastname" style="color:#8F9095;">Pimpida</front></p>
+            <p  style="color:#000;text-size:2.5em;"><b><front size=10%>Telephone Number:  &nbsp;</front> </b>
+            <front size=3%><id="tel" style="color:#8F9095;">081-234-5678</front></p>
+            <p  style="color:#000;text-size:2.5em;"><b><front size=10%>Email:  &nbsp;</front> </b>
+            <front size=3%><id="email" style="color:#8F9095;">debbie.baker@example.com</front></p>
+        </div>
+        <div class="edit">
+            <a href="/Home/EditProfile"><button><img src="~/img/Edit.jpg" style="width=100%; height=100%;" ></button></a>
+        <div>
+   </div>
+</body>
+</html>

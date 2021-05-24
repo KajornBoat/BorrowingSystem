@@ -1,0 +1,780 @@
+﻿@model LockLock.Models.TableModel
+@* @model IEnumerable<LockLock.Models.User> *@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+@* <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> *@
+<link rel="stylesheet" href="~/css/user.css" />
+@* <link rel="stylesheet" href="~/css/all.css" /> *@
+
+<style>
+    .container {
+        max-width: 1200px;
+    }
+
+    .container {
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .nav-tabs {
+        border-bottom: transparent !important;
+    }
+
+    .topOfContent {
+        padding-top: 25px;
+    }
+
+    .nav-tabs {
+        border-bottom: 1px solid #dee2e6;
+    }
+
+    .nav {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style: none;
+    }
+
+    dl,
+    ol,
+    ul {
+        margin-top: 0;
+        margin-bottom: 1rem;
+    }
+
+    *,
+    ::after,
+    ::before {
+        box-sizing: border-box;
+    }
+
+    li {
+        display: list-item;
+        text-align: -webkit-match-parent;
+    }
+
+    .nav {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style: none;
+    }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    }
+
+    .text-center {
+        text-align: center !important;
+    }
+
+    .table-responsive {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .table {
+        width: 100%;
+        margin-bottom: 1rem;
+        color: #212529;
+        border-collapse: collapse;
+        display: table;
+        text-indent: initial;
+        border-spacing: 2px;
+        border-color: grey;
+    }
+
+    .table-secondary,
+    .table-secondary>td,
+    .table-secondary>th {
+        background-color: #d6d8db;
+    }
+
+    thead {
+        display: table-header-group;
+        vertical-align: middle;
+        border-color: inherit;
+    }
+
+    thead> :first-child {
+        background-color: #e3e7eb;
+        border-bottom: 4px solid #c1c8ce;
+        font-weight: bold;
+    }
+
+    tr {
+        display: table-row;
+        vertical-align: inherit;
+        border-color: inherit;
+    }
+
+    #main th,
+    #main td {
+        width: 5%;
+    }
+
+    .table thead th {
+        vertical-align: bottom;
+        border-bottom: 2px solid #dee2e6;
+    }
+
+    .table-secondary tbody+tbody,
+    .table-secondary td,
+    .table-secondary th,
+    .table-secondary thead th {
+        border-color: #b3b7bb;
+    }
+
+    .table td,
+    .table th {
+        padding: .75rem;
+        vertical-align: top;
+        border-top: 1px solid #dee2e6;
+    }
+
+    th,
+    td {
+        text-align: center;
+    }
+
+    th {
+        display: table-cell;
+        vertical-align: inherit;
+        font-weight: bold;
+        text-align: -internal-center;
+    }
+
+    thead> :first-child {
+        background-color: #e3e7eb;
+        border-bottom: 4px solid #c1c8ce;
+        font-weight: bold;
+    }
+
+    tbody {
+        display: table-row-group;
+        vertical-align: middle;
+        border-color: inherit;
+    }
+
+    td {
+        display: table-cell;
+        vertical-align: inherit;
+    }
+
+    .form-inline {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-flow: row wrap;
+        flex-flow: row wrap;
+        -ms-flex-align: center;
+        align-items: center;
+    }
+
+    form {
+        display: block;
+        margin-top: 0em;
+    }
+
+    [type=button]:not(:disabled),
+    [type=reset]:not(:disabled),
+    [type=submit]:not(:disabled),
+    button:not(:disabled) {
+        cursor: pointer;
+    }
+
+    .ml-auto,
+    .mx-auto {
+        margin-left: auto !important;
+    }
+
+    .p-2 {
+        padding: .5rem !important;
+    }
+
+    .btn {
+        display: inline-block;
+        font-weight: 400;
+
+        text-align: center;
+        vertical-align: middle;
+        -webkit-user-select: none;
+
+        border: 1px solid transparent;
+
+        font-size: 1rem;
+        line-height: 1.5;
+        border-radius: .25rem;
+        transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    }
+
+    [type=button],
+    [type=reset],
+    [type=submit],
+    button {
+        -webkit-appearance: button;
+    }
+
+    button,
+    select {
+        text-transform: none;
+    }
+
+    button,
+    input {
+        overflow: visible;
+    }
+
+    button,
+    input,
+    optgroup,
+    select,
+    textarea {
+        margin: 0;
+        font-family: inherit;
+    }
+
+    .modal {
+
+        outline: 0;
+    }
+
+    .modal-dialog {
+        max-width: 500px;
+        margin: 1.75rem auto;
+    }
+
+    .modal-dialog {
+        position: relative;
+        width: auto;
+        pointer-events: none;
+    }
+
+    .modal-content {
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        width: 100%;
+        pointer-events: auto;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid rgba(0, 0, 0, .2);
+        border-radius: .3rem;
+        outline: 0;
+    }
+
+    .border-0 {
+        border: 0 !important;
+    }
+
+    .modal-header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        padding: 1rem 1rem;
+        border-top-left-radius: .3rem;
+        border-top-right-radius: .3rem;
+    }
+
+    .text-center {
+        text-align: center !important;
+    }
+
+    .w-100 {
+        width: 100% !important;
+    }
+
+    .modal-title {
+        line-height: 1.5;
+    }
+
+    .h2,
+    h2 {
+        font-size: 2rem;
+    }
+
+    img {
+        vertical-align: middle;
+        border-style: none;
+    }
+
+    .modal-body {
+        padding: 10px 30px 0px 30px;
+    }
+
+    .modal-body {
+        position: relative;
+        flex: 1 1 auto;
+    }
+
+    .modal-footer {
+        padding: 15px 30px 30px 15px;
+        text-align: right;
+    }
+
+    .modal-footer {
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: flex-end;
+
+        border-bottom-right-radius: .3rem;
+        border-bottom-left-radius: .3rem;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    .squaredThree {
+        margin-top: 5px;
+        margin-right: 4px;
+    }
+</style>
+
+@{
+    ViewData["Title"] = "Index Page";
+}
+
+@if (Model.adminEmail == "")
+{
+    <script type="text/javascript">
+        var array = [];
+        window.onload = function () {
+            var modal = document.getElementById('bookingModal');
+            /*var noneModal = document.getElementById('noneModal');
+            var errorModal = document.getElementById('errorModal');*/
+            var modalButton = document.getElementById('btnBooking');
+            var modalClose = document.getElementById('modalClose');
+            /*var modalCloseNone = document.getElementById('modalCloseNone');
+            var modalCloseError = document.getElementById('modalCloseError');*/
+
+
+            modalButton.onclick = function () {
+                if (dataProcess() === "ok") {
+                    modal.style.display = "block";
+                    errorModal.style.display = "none";
+                    noneModal.style.display = "none";
+                }
+                else if (dataProcess() === "error") {
+                    alert("กรุณาจองภายในวันเดียวกัน");
+                }
+                else {
+                    alert("กรุณาทำการจองก่อน");
+                }
+                console.log("but");
+            }
+
+            modalClose.onclick = function () {
+                modal.style.display = "none";
+                console.log("clo");
+            }
+
+            /*modalCloseNone.onclick = function () {
+                noneModal.style.display = "none";
+                console.log("clo");
+            }
+
+            modalCloseError.onclick = function () {
+                errorModal.style.display = "none";
+                console.log("clo");
+            }*/
+
+            window.onclick = function () {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                    console.log("out");
+                }
+                /*if (event.target == noneModal) {
+                    noneModal.style.display = "none";
+                    console.log("out");
+                }
+                if (event.target == errorModal) {
+                    errorModal.style.display = "none";
+                    console.log("out");
+                }*/
+            }
+
+            function dataProcess() {
+        @* document.getElementById('TextMessage').innerHTML = document.getElementById('02').checked; *@
+                    Date.prototype.addDays = function(days) {
+                        var date = new Date(this.valueOf());
+                        date.setDate(date.getDate() + days);
+                        return date;
+                    }
+                array = [];
+                var d = new Date();
+                var row = -1;
+                var rowChecked = false;
+                var days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+                var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                for (var i = 0; i < 7; i++) {
+                    for (var j = 0; j < 9; j++) {
+                        if (document.getElementById(`${j}${i}`).checked) {
+                            if (row == -1) {
+                                row = i;
+                            }
+                            else if (row != i) {
+                                rowChecked = true;
+                                break;
+                            }
+                            var now = d.addDays(i);
+                            array.push(days[now.getDay()] + ", " + now.getDate() + " " + months[now.getMonth()] + " " + now.getFullYear() + " " + (j + 9).toString() + ".00 - " + (j + 10).toString() + ".00")
+                        }
+                    }
+                    if (rowChecked) {
+                        break;
+                    }
+                }
+                if (rowChecked) {
+                    return "error";
+                }
+                else if (row == -1) {
+                    return "none"
+                }
+                var output = "";
+                var name = "@Model.firstName" + " " + "@Model.lastName";
+                var roomName = "@Model.roomName";
+                array.forEach((value, index, array) => { output += value + "<br>" });
+        @* document.getElementById('TextMessage').innerHTML = days[d.getDay()] + ", " + d.getDate() + " " + months[d.getMonth()] + " " + d.getFullYear(); *@
+        @* document.getElementById('TextMessage').innerHTML = output; *@
+                    document.getElementById('times').innerHTML = output;
+                document.getElementById('name').innerHTML = name;
+                document.getElementById('roomName').innerHTML = roomName;
+                return "ok";
+            }
+
+        }
+
+        function sendData() {
+            var roomID = "@Model.roomID";
+            console.log(roomID);
+            var postData = {
+                roomID: roomID,
+                dates: array,
+            }
+            /*$.ajax({
+                type: "POST",
+                url: "/Home/Transaction",
+                data: postData,
+                success: function (data) {
+                    console.log("hello");
+                    console.log(data.Result);
+                    var url = '@Url.Action("History", "Home")';
+                    window.location.href = url;
+                },
+                error: function (response) {
+                    console.log(response.status);
+                    console.log(response.statusText);
+                    var url = '@Url.Action("SignIn", "Account")';
+                    window.location.href = url;
+                },
+                dataType: "json",
+                traditional: true
+            })*/
+            //try{
+            fetch("/Home/Transaction", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(postData),
+            })
+                .then(response => {
+                    if (response.ok) return response.json();
+        @* console.log("asdf => " + JSON.stringify(response)); *@
+                                                                                            return response.text().then(response => {
+                        console.log(JSON.stringify(response));
+                        throw new Error(response);
+                    })
+                })
+                .then(data => {
+                    console.log("hello");
+                    console.log(data.Result);
+                    var url = '@Url.Action("History", "Home")';
+                    window.location.href = url;
+                })
+                .catch(error => {
+                    if (error.message == "UserError") {
+                        var url = '@Url.Action("SignIn", "Account")';
+                        window.location.href = url;
+                    }
+                    else if (error.message == "DataError") {
+                        alert("Data not match in back-end");
+                    }
+                })
+            //}
+            /*catch (error) {
+                console.log(JSON.stringify(error));
+                var url = '@Url.Action("SignIn", "Account")';
+                //window.location.href = url;
+            }*/
+
+            console.log(array);
+        }
+
+        function getD() {
+            console.log("YO");
+            fetch("/Home/Test", {
+                method: 'POST',
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log("hello");
+                    console.log(data.Result);
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+        }
+    </script>
+}
+
+@Html.Partial("Navbar", new NavbarModel{name= @Model.firstName,surname= @Model.lastName, isUser=true })
+
+<div class="container">
+    <ul class="nav nav-tabs topOfContent">
+        <li @(Model.roomNum==1?"class=active" :"")><a class="tab1" href="/?room=1">ROOM 1</a></li>
+        <li @(Model.roomNum==2?"class=active" :"")><a class="tab2" href="/?room=2">ROOM 2</a></li>
+        <li @(Model.roomNum==3?"class=active" :"")><a class="tab3" href="/?room=3">ROOM 3</a></li>
+        <li @(Model.roomNum==4?"class=active" :"")><a class="tab4" href="/?room=4">ROOM 4</a></li>
+        <li @(Model.roomNum==5?"class=active" :"")><a class="tab5" href="/?room=5">ROOM 5</a></li>
+    </ul>
+
+    <div class="tab-content">
+        @if (Model.adminEmail == "")
+        {
+            <div>
+                @* <div>
+                    @Html.DisplayFor(modelItem => Model.firstName)<br>
+                    @Html.DisplayFor(modelItem => Model.lastName)<br>
+                    @Html.DisplayFor(modelItem => Model.roomName)<br>
+                    @Html.DisplayFor(modelItem => Model.roomID)<br>
+                    </div> *@
+                <br>
+                <h3 class="topic-color" id="object">Object : @Html.DisplayFor(modelItem => Model.objName)</h3>
+                <h3 class="text-center boxTopicDate"><b class="textDate">@Html.DisplayFor(modelItem => Model.timeLength)</b>
+                </h3>
+                <div class="table-responsive">
+                    <table class="table" id="main">
+                        <thead class="table-secondary">
+                            <tr>
+                                <th scope="col">Start Time</th>
+                                @foreach (var item in Model.name)
+                                {
+                                    <th>
+                                        @Html.DisplayFor(modelItem => item)
+                                    </th>
+                                }
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (var i = 0; i < 9; i++)
+                            {
+                                <tr>
+                                    <td scope="row">@(i+9).00</td>
+                                    @for (var j = 0; j < 7; j++)
+                                    {
+                                        <td>
+                                            <form name="queryForm" class="form-inline">
+                                                <div class="boxLabel">
+                                                    <div class="squaredThree">
+                                                        <input type="checkbox" name="optionsRadios" id="@i@j" value="other"
+                                                ng-model="formData.other" ng-true-value="'other'"
+                                                ng-init="formData.other='other'" @(Model.table[j,
+                                                i].Item1=="Red"||Model.table[j, i].Item1=="Grey"||Model.table[j,
+                                                i].Item1=="Yellow"?"disabled":"")>
+                                                        <label for="@i@j"
+                                                class="@Html.DisplayFor(modelItem => Model.table[j, i].Item1)"></label>
+                                                    </div>
+                                                    <label class="label-text">&nbsp;(@Html.DisplayFor(modelItem =>
+                                            Model.table[j,i].Item2))</label>
+                                                </div>
+                                            </form>
+                                        </td>
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                    <div class="d-flex">
+                        <div class="container-row">
+
+                            <div class="squaredThree">
+                                <input type="checkbox" disabled>
+                                <label class="Red"></label>
+                            </div>
+                            <label class="label-text">&nbsp;ไม่สามารถจองได้</label>
+
+                            <div class="squaredThree">
+                                <input type="checkbox" disabled>
+                                <label class="Grey"></label>
+                            </div>
+                            <label class="label-text">&nbsp;หมดเวลาการจอง</label>
+
+                            <div class="squaredThree">
+                                <input type="checkbox" disabled>
+                                <label class="Green disablepointer"></label>
+                            </div>
+                            <label class="label-text">&nbsp;สามารถจองได้</label>
+
+                            <div class="squaredThree">
+                                <input type="checkbox" disabled>
+                                <label class="Yellow disablepointer"></label>
+                            </div>
+                            <label class="label-text">&nbsp;ยืมกลุ่มอื่น</label>
+
+                        </div>
+                        <button id="btnBooking" type="button" class="btn btn-info ml-auto p-2">
+                            จองอุปกรณ์
+                        </button>
+                        @* <button id="btnBooking" type="button" class="btn btn-info ml-auto p-2" data-toggle="modal"
+                            data-target="#bookingModal" onclick="dataProcess()">
+                            จองอุปกรณ์
+                            </button> *@
+                    </div>
+
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="text-center blacklist-style">
+                <img src="~/img/blacklist.png" alt="blacklist">
+                <h3>คุณถูก Admin Blacklist!!!</h3>
+                <h3>กรุณาติดต่อไปที่ Email:@Model.adminEmail</h3>
+            </div>
+        }
+    </div>
+
+
+
+
+
+
+
+    <div class="modal" id="bookingModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h2 class="modal-title w-100 text-center topic-color" id="exampleModalLabel">สรุปรายการจองอุปกรณ์
+                    </h2>
+                    <img src="~/img/close.png" alt="close" class="closebtn" id="modalClose">
+                </div>
+                <div class="modal-body">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        viewBox="0 0 16 16">
+                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                        <b>ชื่อ-นามสกุล :</b>
+                        <f id="name"></f>
+                    </svg>
+                    <br><br>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M1 0 0 1l2.2 3.081a1 1 0 0 0 .815.419h.07a1 1 0 0 1 .708.293l2.675 2.675-2.617 2.654A3.003 3.003 0 0 0 0 13a3 3 0 1 0 5.878-.851l2.654-2.617.968.968-.305.914a1 1 0 0 0 .242 1.023l3.356 3.356a1 1 0 0 0 1.414 0l1.586-1.586a1 1 0 0 0 0-1.414l-3.356-3.356a1 1 0 0 0-1.023-.242L10.5 9.5l-.96-.96 2.68-2.643A3.005 3.005 0 0 0 16 3c0-.269-.035-.53-.102-.777l-2.14 2.141L12 4l-.364-1.757L13.777.102a3 3 0 0 0-3.675 3.68L7.462 6.46 4.793 3.793a1 1 0 0 1-.293-.707v-.071a1 1 0 0 0-.419-.814L1 0zm9.646 10.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708zM3 11l.471.242.529.026.287.445.445.287.026.529L5 13l-.242.471-.026.529-.445.287-.287.445-.529.026L3 15l-.471-.242L2 14.732l-.287-.445L1.268 14l-.026-.529L1 13l.242-.471.026-.529.445-.287.287-.445.529-.026L3 11z" />
+                        <b>อุปกรณ์ :</b> @Html.DisplayFor(modelItem => Model.objName)
+                    </svg>
+                    <br><br>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M5.071 1.243a.5.5 0 0 1 .858.514L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15.5a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5H15v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9H.5a.5.5 0 0 1-.5-.5v-2A.5.5 0 0 1 .5 6h1.717L5.07 1.243zM3.5 10.5a.5.5 0 1 0-1 0v3a.5.5 0 0 0 1 0v-3zm2.5 0a.5.5 0 1 0-1 0v3a.5.5 0 0 0 1 0v-3zm2.5 0a.5.5 0 1 0-1 0v3a.5.5 0 0 0 1 0v-3zm2.5 0a.5.5 0 1 0-1 0v3a.5.5 0 0 0 1 0v-3zm2.5 0a.5.5 0 1 0-1 0v3a.5.5 0 0 0 1 0v-3z" />
+                        <b>จำนวนที่จอง :</b> 1
+                    </svg>
+                    <br><br>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M1.5 15a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2.5A1.5 1.5 0 0 0 11.5 1H11V.5a.5.5 0 0 0-.57-.495l-7 1A.5.5 0 0 0 3 1.5V15H1.5zM11 2h.5a.5.5 0 0 1 .5.5V15h-1V2zm-2.5 8c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z" />
+                        <b>ห้องที่จอง :</b>
+                        <f id="roomName"></f>
+                    </svg>
+                    <br><br>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
+                        <b>วัน-เวลา :</b>
+                        <f id="times"></f>
+                    </svg>
+
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-info" onclick="sendData()">ยืนยันการจอง</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @* <div class="modal" id="noneModal" tabindex="-1">
+        <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header border-0">
+        <h2 class="modal-title w-100 text-center topic-color" id="exampleModalLabel">ไม่ได้จอง
+        </h2>
+        <img src="~/img/close.png" alt="close" class="closebtn" id="modalCloseNone">
+        </div>
+        <div class="modal-body">
+        <p><i class="bi bi-person-fill"> <b>ชื่อ-นามสกุล :</b>
+        <f id="name"></f>
+        </i></p>
+        <p><i class="bi bi-tools"> <b>อุปกรณ์ :</b> @Html.DisplayFor(modelItem => Model.objName)</i></p>
+        <p><i class="bi bi-basket-fill"> <b>จำนวนที่จอง :</b> 1</i></p>
+        <p><i class="bi bi-door-open-fill"> <b>ห้องที่จอง :</b>
+        <f id="roomName"></f>
+        </i></p>
+        <p><i class="bi bi-clock-fill"> <b>วัน-เวลา :</b>
+        <f id="times"></f>
+        </i></p>
+        </div>
+        <div class="modal-footer border-0">
+        </div>
+        </div>
+        </div>
+        </div>
+
+        <div class="modal" id="errorModal" tabindex="-1">
+        <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header border-0">
+        <h2 class="modal-title w-100 text-center topic-color" id="exampleModalLabel">จองไม่ตรงวัน
+        </h2>
+        <img src="~/img/close.png" alt="close" class="closebtn" id="modalCloseError">
+        </div>
+        <div class="modal-body">
+        <p><i class="bi bi-person-fill"> <b>ชื่อ-นามสกุล :</b>
+        <f id="name"></f>
+        </i></p>
+        <p><i class="bi bi-tools"> <b>อุปกรณ์ :</b> @Html.DisplayFor(modelItem => Model.objName)</i></p>
+        <p><i class="bi bi-basket-fill"> <b>จำนวนที่จอง :</b> 1</i></p>
+        <p><i class="bi bi-door-open-fill"> <b>ห้องที่จอง :</b>
+        <f id="roomName"></f>
+        </i></p>
+        <p><i class="bi bi-clock-fill"> <b>วัน-เวลา :</b>
+        <f id="times"></f>
+        </i></p>
+        </div>
+        <div class="modal-footer border-0">
+        </div>
+        </div>
+        </div>
+        </div> *@
+</div>
+</div>

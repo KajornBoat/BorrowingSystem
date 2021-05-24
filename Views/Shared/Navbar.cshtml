@@ -1,0 +1,68 @@
+@model LockLock.Models.NavbarModel
+<link rel="stylesheet" href="~/css/navbar.css" />
+
+@* <div>
+    @Model.name
+    <br />
+    @Model.name
+    </div> *@
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        window.addEventListener('scroll', function () {
+            if (window.scrollY > 50) {
+                document.getElementById('navbar_top').style.position = "fixed";
+                //document.getElementById('navbar_top').classList.add('fixed-top');
+                // add padding top to show content behind navbar
+                //navbar_height = document.querySelector('.navbar').offsetHeight;
+                //document.main.style.paddingTop = '56' + 'px';
+            } else {
+                document.getElementById('navbar_top').style.position = "";
+                //document.getElementById('navbar_top').classList.remove('fixed-top');
+                // remove padding top from body
+                //document.main.style.paddingTop = '0';
+            }
+        });
+    });
+</script>
+<header>
+    <nav>
+
+        <ul id="navbar_top">
+            <div class="container">
+                <li>
+                    @if (Model.isUser)
+                    {
+                        <a asp-action="Index" asp-controller="Home" class="title">
+                            <first>BOOKING</first>
+                            <back>EQUIPMENT</back>
+                        </a>
+                    }
+                    else
+                    {
+                        <a asp-action="Index" asp-controller="Admin" class="title">
+                            <first>BOOKING</first>
+                            <back>EQUIPMENT</back>
+                        </a>
+                    }
+                </li>
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropbtn">@Model.name @Model.surname</a>
+                    <div class="dropdown-content">
+                        <a asp-action="Index" asp-controller="User">ประวัติส่วนตัว</a>
+                        @if (Model.isUser)
+                        {
+                            <a asp-action="History" asp-controller="Home">ประวัติการจอง</a>
+                        }
+                        else
+                        {
+                            <a asp-action="Index" asp-controller="Blacklist">Blacklist</a>
+                        }
+                        <a asp-action="SignOut" asp-controller="Account">Sign Out</a>
+                    </div>
+                </li>
+            </div>
+        </ul>
+
+    </nav>
+</header>
