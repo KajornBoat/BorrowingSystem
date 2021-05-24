@@ -1,0 +1,67 @@
+@model IEnumerable<LockLock.Models.BookingModel>
+
+@{
+    ViewData["Title"] = "Booking";
+}
+<div class="container">
+
+    <h1>Index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.BookingID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Num)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RoomName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.timeList)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BookingID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Num)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RoomName)
+                    </td>
+                    <td>
+                        @foreach (var time in item.timeList)
+                        {
+                            @Html.DisplayFor(modelItemmm => time)
+                            <br>
+                        }
+                    </td>
+                    <td>
+                        @if (item.cancel)
+                        {
+                            <form asp-action="cancle" asp-route-transactionID="@item.BookingID">
+                                <button type="submit">Cancle</button>
+                            </form>
+                        }
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

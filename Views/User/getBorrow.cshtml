@@ -1,0 +1,109 @@
+@model LockLock.Models.TableModel
+
+@{
+    ViewData["Title"] = "Borrow Page";
+}
+
+<h1>Borrow</h1>
+<br>
+<h4>Object Name</h4>
+<p>@Html.DisplayFor(modelItem => Model.objName)</p>
+<br>
+<h4>timeLength</h4>
+<p>@Html.DisplayFor(modelItem => Model.timeLength)</p>
+@* <style>
+    .squaredThree {
+    position: relative;
+    float: left;
+    }
+
+    .squaredThree label.Red {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: red;
+    border-radius: 4px;
+    box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 0.4);
+    }
+
+    .squaredThree label.Green {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: green;
+    border-radius: 4px;
+    box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 0.4);
+    }
+
+    .squaredThree label:after {
+    content: '';
+    width: 9px;
+    height: 5px;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    border: 3px solid #fcfff4;
+    border-top: none;
+    border-right: none;
+    background: transparent;
+    opacity: 0;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    }
+
+    .squaredThree label:hover::after {
+    opacity: 0.3;
+    }
+
+    .squaredThree input[type=checkbox] {
+    visibility: hidden;
+    }
+
+    .squaredThree input[type=checkbox]:checked+label:after {
+    opacity: 1;
+    }
+    </style> *@
+@* <div class="container">
+    <form name="queryForm" class="form-inline">
+    <div class="squaredThree">
+    <input type="checkbox" name="optionsRadios" id="checkOther" value="other" ng-model="formData.other"
+    ng-true-value="'other'" ng-init="formData.other='other'">
+    <label for="checkOther" class="@Html.DisplayFor(modelItem => Model.table[j, i].Item1)"></label>
+    </div>
+    <label class="label-text">Other</label>
+    </form>
+    </div> *@
+<table class="table">
+    <thead>
+        <tr>
+            @foreach (var item in Model.name)
+            {
+                <th>
+                    @Html.DisplayFor(modelItem => item)
+                </th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @for (var i = 0; i < 9; i++)
+        {
+            <tr>
+                @for (var j = 0; j < 7; j++)
+                {
+                    <td>
+                        <div class="panel @Html.DisplayFor(modelItem => Model.table[j, i].Item1)">
+                            @Html.DisplayFor(modelItem => Model.table[j, i].Item1)</div>
+
+                        &(@Html.DisplayFor(modelItem => Model.table[j, i].Item2))
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>

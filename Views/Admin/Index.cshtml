@@ -1,0 +1,417 @@
+@model IEnumerable<LockLock.Models.RoomModel>
+
+<link rel="stylesheet" href="~/css/user.css" />
+<script src="~/js/admin.js"></script>
+
+@{
+    ViewData["Title"] = "Admin";
+}
+
+@{
+    bool[] checkRoom = new bool[] { false, false, false, false, false };
+    bool[] firstRoom = new bool[] { false, false, false, false, false };
+    foreach (var item in Model)
+    {
+        checkRoom[item.number - 1] = true;
+    }
+    for (int i = 0; i < checkRoom.Length; i++)
+    {
+        if (checkRoom[i])
+        {
+            firstRoom[i] = true;
+            break;
+        }
+    }
+}
+<style>
+    #room1 {
+        display: none;
+    }
+
+    #room2 {
+        display: none;
+    }
+
+    #room3 {
+        display: none;
+    }
+
+    #room4 {
+        display: none;
+    }
+
+    #room5 {
+        display: none;
+    }
+</style>
+
+<script>
+    function changeTab(tab) {
+        var navs = document.getElementById("adminMain").getElementsByTagName("li");
+        for (var i = 0; i < navs.length; i++) {
+            if (tab == i)
+                navs[i].setAttribute("class", "active");
+            else
+                navs[i].setAttribute("class", "");
+        }
+        var room = [];
+        for (var i = 0; i < 5; i++) {
+            room.push(document.getElementById(`room${i + 1}`));
+        }
+        for (var i = 0; i < 5; i++) {
+            if (tab == i)
+                room[i].style.display = "block";
+            else
+                room[i].style.display = "none";
+        }
+    }
+    window.onload = function () {
+        changeTab(0);
+    }
+</script>
+
+@Html.Partial("Navbar", new NavbarModel{name= (string) TempData["name"],surname= (string) TempData["surname"],
+isUser=false })
+
+<div class="container">
+    <ul class="nav nav-tabs topOfContent" id="adminMain">
+        @for (int i = 0; i < 5; i++)
+        {
+            @if (checkRoom[i])
+            {
+                <li @(firstRoom[i]?"class=active" :"")><a class="tab@(i+1) pointer-cursor" onclick="changeTab(@i)">ROOM
+                        @(i+1)</a></li>
+            }
+            else
+            {
+                <li><a class="tab@(i+1) disable" onclick="changeTab(@i)">ROOM @(i+1)</a></li>
+            }
+
+        }
+    </ul>
+
+    <div>
+        <div id="room1">
+            @if (checkRoom[0])
+            {
+                @foreach (var item in Model)
+                {
+                    @if (item.number == 1)
+                    {
+                        <table class="table sortable" id="adminTable">
+                            <thead>
+                                <tr>
+                                    <th>ชื่ออุปกรณ์</th>
+                                    <th>จำนวนทั้งหมด</th>
+                                    <th></th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+                                <tr class="item">
+                                    <form asp-action="updateRoom">
+                                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                        <input type="hidden" id="RoomID" name="RoomID" value="@item.RoomID">
+                                        <td>
+                                            <input type="text" id="objName1" name="objName" value="@item.objName" disabled>
+                                            <span class="text-danger field-validation-valid" data-valmsg-for="objName"
+                                    data-valmsg-replace="true"></span>
+                                        </td>
+                                        <td>
+                                            <input type="number" id="objNum1" name="objNum" value="@item.objNum" disabled>
+                                            <n>ชิ้น</n>
+                                            <span class="text-danger field-validation-valid" data-valmsg-for="objNum"
+                                    data-valmsg-replace="true"></span>
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-warning" id="change1"
+                                    onClick="changeBut(1)">แก้ไข</button>
+                                            <button type="submit" class="btn btn-info" id="submit1"
+                                    style="display: none;">ยืนยัน</button>
+                                        </td>
+                                    </form>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <form class="btn-footer" asp-controller="BookingRoom" asp-route-room="@item.RoomID">
+                            <button type="submit" class="btn btn-info">รายการจอง</button>
+                        </form>
+                    }
+                }
+            }
+        </div>
+        <div id="room2">
+            @if (checkRoom[1])
+            {
+                @foreach (var item in Model)
+                {
+                    @if (item.number == 2)
+                    {
+                        <table class="table sortable" id="adminTable">
+                            <thead>
+                                <tr>
+                                    <th>ชื่ออุปกรณ์</th>
+                                    <th>จำนวนทั้งหมด</th>
+                                    <th></th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+
+                                <tr class="item">
+                                    <form asp-action="updateRoom">
+                                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                        <input type="hidden" id="RoomID" name="RoomID" value="@item.RoomID">
+                                        <td>
+                                            <input type="text" id="objName2" name="objName" value="@item.objName" disabled>
+                                            <span class="text-danger field-validation-valid" data-valmsg-for="objName"
+                                    data-valmsg-replace="true"></span>
+                                        </td>
+                                        <td>
+                                            <input type="number" id="objNum2" name="objNum" value="@item.objNum" disabled>
+                                            <n>ชิ้น</n>
+                                            <span class="text-danger field-validation-valid" data-valmsg-for="objNum"
+                                    data-valmsg-replace="true"></span>
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-warning" id="change2"
+                                    onClick="changeBut(2)">แก้ไข</button>
+                                            <button type="submit" class="btn btn-info" id="submit2"
+                                    style="display: none;">ยืนยัน</button>
+                                        </td>
+                                    </form>
+                                </tr>
+
+
+                            </tbody>
+                        </table>
+                        <form class="btn-footer" asp-controller="BookingRoom" asp-route-room="@item.RoomID">
+                            <button type="submit" class="btn btn-info">รายการจอง</button>
+                        </form>
+                    }
+                }
+            }
+        </div>
+        <div id="room3">
+            @if (checkRoom[2])
+            {
+                @foreach (var item in Model)
+                {
+                    @if (item.number == 3)
+                    {
+                        <table class="table sortable" id="adminTable">
+                            <thead>
+                                <tr>
+                                    <th>ชื่ออุปกรณ์</th>
+                                    <th>จำนวนทั้งหมด</th>
+                                    <th></th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+                                <tr class="item">
+                                    <form asp-action="updateRoom">
+                                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                        <input type="hidden" id="RoomID" name="RoomID" value="@item.RoomID">
+                                        <td>
+                                            <input type="text" id="objName3" name="objName" value="@item.objName" disabled>
+                                            <span class="text-danger field-validation-valid" data-valmsg-for="objName"
+                                    data-valmsg-replace="true"></span>
+                                        </td>
+                                        <td>
+                                            <input type="number" id="objNum3" name="objNum" value="@item.objNum" disabled>
+                                            <n>ชิ้น</n>
+                                            <span class="text-danger field-validation-valid" data-valmsg-for="objNum"
+                                    data-valmsg-replace="true"></span>
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-warning" id="change3"
+                                    onClick="changeBut(3)">แก้ไข</button>
+                                            <button type="submit" class="btn btn-info" id="submit3"
+                                    style="display: none;">ยืนยัน</button>
+                                        </td>
+                                    </form>
+                                </tr>
+
+
+                            </tbody>
+                        </table>
+                        <form class="btn-footer" asp-controller="BookingRoom" asp-route-room="@item.RoomID">
+                            <button type="submit" class="btn btn-info">รายการจอง</button>
+                        </form>
+                    }
+                }
+            }
+        </div>
+        <div id="room4">
+            @if (checkRoom[3])
+            {
+                @foreach (var item in Model)
+                {
+                    @if (item.number == 4)
+                    {
+                        <table class="table sortable" id="adminTable">
+                            <thead>
+                                <tr>
+                                    <th>ชื่ออุปกรณ์</th>
+                                    <th>จำนวนทั้งหมด</th>
+                                    <th></th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+
+                                <tr class="item">
+                                    <form asp-action="updateRoom">
+                                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                        <input type="hidden" id="RoomID" name="RoomID" value="@item.RoomID">
+                                        <td>
+                                            <input type="text" id="objName4" name="objName" value="@item.objName" disabled>
+                                            <span class="text-danger field-validation-valid" data-valmsg-for="objName"
+                                    data-valmsg-replace="true"></span>
+                                        </td>
+                                        <td>
+                                            <input type="number" id="objNum4" name="objNum" value="@item.objNum" disabled>
+                                            <n>ชิ้น</n>
+                                            <span class="text-danger field-validation-valid" data-valmsg-for="objNum"
+                                    data-valmsg-replace="true"></span>
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-warning" id="change4"
+                                    onClick="changeBut(4)">แก้ไข</button>
+                                            <button type="submit" class="btn btn-info" id="submit4"
+                                    style="display: none;">ยืนยัน</button>
+                                        </td>
+                                    </form>
+                                </tr>
+
+
+                            </tbody>
+                        </table>
+                        <form class="btn-footer" asp-controller="BookingRoom" asp-route-room="@item.RoomID">
+                            <button type="submit" class="btn btn-info">รายการจอง</button>
+                        </form>
+                    }
+                }
+            }
+        </div>
+        <div id="room5">
+            @if (checkRoom[4])
+            {
+                @foreach (var item in Model)
+                {
+                    @if (item.number == 5)
+                    {
+                        <table class="table sortable" id="adminTable">
+                            <thead>
+                                <tr>
+                                    <th>ชื่ออุปกรณ์</th>
+                                    <th>จำนวนทั้งหมด</th>
+                                    <th></th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+
+                                <tr class="item">
+                                    <form asp-action="updateRoom">
+                                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                        <input type="hidden" id="RoomID" name="RoomID" value="@item.RoomID">
+                                        <td>
+                                            <input type="text" id="objName5" name="objName" value="@item.objName" disabled>
+                                            <span class="text-danger field-validation-valid" data-valmsg-for="objName"
+                                    data-valmsg-replace="true"></span>
+                                        </td>
+                                        <td>
+                                            <input type="number" id="objNum5" name="objNum" value="@item.objNum" disabled>
+                                            <n>ชิ้น</n>
+                                            <span class="text-danger field-validation-valid" data-valmsg-for="objNum"
+                                    data-valmsg-replace="true"></span>
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-warning" id="change5"
+                                    onClick="changeBut(5)">แก้ไข</button>
+                                            <button type="submit" class="btn btn-info" id="submit5"
+                                    style="display: none;">ยืนยัน</button>
+                                        </td>
+                                    </form>
+                                </tr>
+
+
+                            </tbody>
+                        </table>
+                        <form class="btn-footer" asp-controller="BookingRoom" asp-route-room="@item.RoomID">
+                            <button type="submit" class="btn btn-info">รายการจอง</button>
+                        </form>
+                    }
+                }
+            }
+        </div>
+    </div>
+</div>
+
+@* <div class="container">
+
+    <h1>Index</h1>
+
+    <table class="table">
+    <thead>
+    <tr>
+    <th>
+    @Html.DisplayNameFor(model => model.RoomID)
+    </th>
+    <th>
+    @Html.DisplayNameFor(model => model.name)
+    </th>
+    <th>
+    @Html.DisplayNameFor(model => model.number)
+    </th>
+    <th>
+    @Html.DisplayNameFor(model => model.objName)
+    </th>
+    <th>
+    @Html.DisplayNameFor(model => model.objNum)
+    </th>
+    <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+    <tr>
+    <td>
+    @Html.DisplayFor(modelItem => item.RoomID)
+    </td>
+    <td>
+    @Html.DisplayFor(modelItem => item.name)
+    </td>
+    <td>
+    @Html.DisplayFor(modelItem => item.number)
+    </td>
+    <td>
+    @Html.DisplayFor(modelItem => item.objName)
+    </td>
+    <td>
+    @Html.DisplayFor(modelItemmm => item.objNum)
+    </td>
+    <td>
+    <form asp-action="updateRoom" asp-route-room="@item">
+    <button type="submit">Edit</button>
+    </form>
+    <form asp-controller="BookingRoom" asp-route-room="@item.RoomID">
+    <button type="submit">BookingRoom</button>
+    </form>
+    </td>
+    </tr>
+    }
+    </tbody>
+    </table>
+    </div> *@

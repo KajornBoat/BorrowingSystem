@@ -1,0 +1,435 @@
+@model IEnumerable<LockLock.Models.BookingModel>
+
+@{
+  ViewData["Title"] = "Booking";
+}
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+@* <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> *@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="~/css/user.css" />
+@* <link rel="stylesheet" href="~/css/all.css" /> *@
+<script src="~/js/history.js"></script>
+@* <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script> *@
+
+@{
+  ViewData["Title"] = "History";
+}
+
+<style>
+  .container {
+    max-width: 1200px;
+  }
+
+  .container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  .table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    background-color: transparent;
+    border-collapse: collapse;
+    border-spacing: 0;
+    display: table;
+
+    text-indent: initial;
+
+    border-color: grey;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+
+  thead {
+    display: table-header-group;
+    vertical-align: middle;
+    border-color: inherit;
+  }
+
+  thead> :first-child {
+    background-color: #e3e7eb;
+    border-bottom: 4px solid #c1c8ce;
+    font-weight: bold;
+  }
+
+  tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+  }
+
+  .table>caption+thead>tr:first-child>td,
+  .table>caption+thead>tr:first-child>th,
+  .table>colgroup+thead>tr:first-child>td,
+  .table>colgroup+thead>tr:first-child>th,
+  .table>thead:first-child>tr:first-child>td,
+  .table>thead:first-child>tr:first-child>th {
+    border-top: 0;
+  }
+
+  .table>thead>tr>th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #ddd;
+  }
+
+  .table>tbody>tr>td,
+  .table>tbody>tr>th,
+  .table>tfoot>tr>td,
+  .table>tfoot>tr>th,
+  .table>thead>tr>td,
+  .table>thead>tr>th {
+    padding: 8px;
+    line-height: 1.42857143;
+  }
+
+  th {
+    display: table-cell;
+    font-weight: bold;
+
+  }
+
+  .table>caption+thead>tr:first-child>td,
+  .table>caption+thead>tr:first-child>th,
+  .table>colgroup+thead>tr:first-child>td,
+  .table>colgroup+thead>tr:first-child>th,
+  .table>thead:first-child>tr:first-child>td,
+  .table>thead:first-child>tr:first-child>th {
+    border-top: 0;
+  }
+
+  .table>thead>tr>th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #ddd;
+  }
+
+  .table>tbody>tr>td,
+  .table>tbody>tr>th,
+  .table>tfoot>tr>td,
+  .table>tfoot>tr>th,
+  .table>thead>tr>td,
+  .table>thead>tr>th {
+    padding: 8px;
+    line-height: 1.42857143;
+  }
+
+  tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+  }
+
+  td {
+    display: table-cell;
+  }
+
+  .table>tbody>tr>td,
+  .table>tbody>tr>th,
+  .table>tfoot>tr>td,
+  .table>tfoot>tr>th,
+  .table>thead>tr>td,
+  .table>thead>tr>th {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+  }
+
+  .table>tbody>tr>td,
+  .table>tbody>tr>th,
+  .table>tfoot>tr>td,
+  .table>tfoot>tr>th,
+  .table>thead>tr>td,
+  .table>thead>tr>th {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+  }
+
+  [type=button]:not(:disabled),
+  [type=reset]:not(:disabled),
+  [type=submit]:not(:disabled),
+  button:not(:disabled) {
+    cursor: pointer;
+  }
+
+  .btn.disabled,
+  .btn[disabled],
+  fieldset[disabled] .btn {
+    cursor: not-allowed;
+    opacity: .65;
+    box-shadow: none;
+  }
+
+  .btn {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    touch-action: manipulation;
+    background-image: none;
+    border: 1px solid transparent;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    user-select: none;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font-family: inherit;
+  }
+
+  button,
+  html input[type=button],
+  input[type=reset],
+  input[type=submit] {
+    -webkit-appearance: button;
+  }
+
+  button,
+  select {
+    text-transform: none;
+  }
+
+  button {
+    overflow: visible;
+  }
+
+  button,
+  input,
+  optgroup,
+  select,
+  textarea {
+    font: inherit;
+    margin: 0;
+  }
+
+  .btn-danger {
+    color: #fff;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+  }
+
+  .modal {
+
+    outline: 0;
+  }
+
+  .modal-dialog {
+    max-width: 500px;
+    margin: 1.75rem auto;
+  }
+
+  .modal-dialog {
+    position: relative;
+    width: auto;
+    pointer-events: none;
+  }
+
+  .modal-content {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-radius: .3rem;
+    outline: 0;
+  }
+
+  .border-0 {
+    border: 0 !important;
+  }
+
+  .modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 1rem 1rem;
+    border-top-left-radius: .3rem;
+    border-top-right-radius: .3rem;
+  }
+
+  .text-center {
+    text-align: center !important;
+  }
+
+  .w-100 {
+    width: 100% !important;
+  }
+
+  .modal-title {
+    line-height: 1.5;
+  }
+
+  .h2,
+  h2 {
+    font-size: 2rem;
+  }
+
+  img {
+    vertical-align: middle;
+    border-style: none;
+  }
+
+  .modal-body {
+    padding: 10px 30px 0px 30px;
+  }
+
+  .modal-body {
+    position: relative;
+    flex: 1 1 auto;
+  }
+
+  .modal-footer {
+    padding: 15px 30px 30px 15px;
+    text-align: right;
+  }
+
+  .modal-footer {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    border-bottom-right-radius: .3rem;
+    border-bottom-left-radius: .3rem;
+  }
+</style>
+
+@functions {
+
+  public static String toTime(DateTime time)
+  {
+    var output = "";
+    output += time.ToString("dddd") + ", ";
+    output += time.ToString("dd") + " ";
+    output += time.ToString("MMMM") + " ";
+    output += time.ToString("yyyy") + " ";
+    output += time.ToString("HH") + ".00 - ";
+    output += time.AddHours(1).ToString("HH") + ".00";
+    return output;
+  }
+}
+
+@Html.Partial("Navbar", new NavbarModel{name= (string) TempData["name"],surname= (string) TempData["surname"],
+isUser=true })
+
+<div class="container">
+  <h1 class="topic-color text-center topOfContent">ประวัติการจอง</h1>
+
+
+  <table class="table sortable" id="historyTable">
+    @* <tr>
+      <th># <span id="sorttable_sortfwdind">&nbsp;▾</span> </th>
+      <th>ชื่ออุปกรณ์</th>
+      <th>จำนวน</th>
+      <th>ห้อง</th>
+      <th>วัน-เวลา</th>
+      <th></th>
+      </tr> *@
+    <thead>
+      <tr>
+        <th class="pointer-cursor" onclick="sortTable(0)"># &#9662</th>
+        <th class="pointer-cursor" onclick="sortTable(1)">ชื่ออุปกรณ์</th>
+        <th>จำนวน</th>
+        <th class="pointer-cursor" onclick="sortTable(3)">ห้อง</th>
+        <th class="pointer-cursor" onclick="sortTable(4)">วัน-เวลา</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @foreach (var item in Model.Select((value, i) => new { i, value }))
+      {
+        <tr class="item">
+          <td>
+            @Html.DisplayFor(modelItem => item.i)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.value.Name)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.value.Num)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.value.RoomName)
+          </td>
+          <td>
+            @foreach (var time in item.value.timeList)
+            {
+              @toTime(time)
+              <br>
+            }
+          </td>
+          <td>
+            @if (item.value.cancel)
+            {
+              <button type="button" class="btn btn-danger" onClick="toModal('@(item.value.BookingID)')"
+            data-toID="@item.value.BookingID">ยกเลิก</button>
+              @* <form asp-action="cancle" asp-route-transactionID="@item.value.BookingID">
+                <button type="submit">Cancle</button>
+                </form> *@
+            }
+            else
+            {
+              <button type="button" class="btn btn-danger" disabled>ยกเลิก</button>
+            }
+
+          </td>
+        </tr>
+      }
+
+    </tbody>
+
+  </table>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="CancelModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header border-0">
+        <img src="~/img/close.png" alt="close" class="closebtn" id="modalClose">
+      </div>
+      <div class="modal-body text-center">
+        <img src="~/img/cancel.png" width="30%" alt="cancel">
+        <h3>ต้องการ</h3>
+        <h3>"ยกเลิกการจอง"</h3>
+        <form id="cancelForm" action="/Home/cancel" method="post">
+          <button type="submit" class="btn btn-warning btn-popUp ">ยกเลิกการจอง</button>
+        </form>
+        <br>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <style>
+      .container{
+      
+      float:center;
+      display:flex;
+      flex-direction: row;
+      
+    }
+
+     .container1{
+        display:flex;
+        flex-direction: column;
+        align-items:flex-start;
+        width: 100%;
+   }
+     .container2{
+
+        display:grid;
+ 
+    }
+    .container3{
+
+        display:grid;
+        width: 100%;
+      }
+
+      
+       .item1{       
+         padding-Top: 20%;
+         float: left;
+         position: relative;
+      
+      }
+      .item2{      
+         padding-Top: 10%;
+         float: right;
+         position:static;
+         margin-Left:10%;        
+      }
+      .item3{
+         line-height:0;
+         grid-row-start:1;
+         float:left;
+         position:static;
+         
+      
+      }
+      .item4{
+        line-height:0;
+         grid-row-start:1;
+         float:left;
+         position:relative;
+      
+      }
+
+       .item5{
+         line-height:0;
+         float: left;
+         position: center;
+         width:100%;
+         margin-top:5%;
+         
+      }
+      .item6{
+         
+         float: left;
+         position: relative;
+         left : 30%;
+      }
+       .item7{
+         margin-top:5%;         
+         float: center;
+         position: relative;
+         right:1%;
+      }
+       .item8{
+         margin-top: 5%;
+         float: center;
+         position: relative;
+         right:2.5%;
+      }
+       
+      button {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+}
+
+.resizedTextbox {
+    width: 95%; 
+    height: 65%; 
+    }
+   
+.resizedTextbox1 {
+    width: 80%; 
+    height: 65%;
+    }
+    
+.resizedTextbox2 {
+    width: 90%; 
+    height: 65%;
+    }
+     
+   </style>
+<title>Lock&Lock</title>
+</head>
+<body>
+   <div class="container">
+      <div class="container1">
+      
+         <div class ="item1">
+         
+            <h1><font size=10%>Sign In</font></h1>
+         
+         <div class ="item7">
+            <button><img src="~/img/Google_SignIn.jpg" width="100%" height="100%" ></button>
+         </div>
+         <div class ="item8">
+         <p><img src="~/img/Or.jpg" width="100%" height="100%" >
+          </div>
+         <div class="container3">
+                                         
+               <div class ="item5">
+                       
+                        <p><b><font size=3%>Email</font></b></p>
+                        <input type="text" class="resizedTextbox" name="Email" style="background: #FAFBFF; text-align: center; border: 3px #E6E8ED solid;border-radius: 6px;"> 
+               </div> 
+               <div class ="item5">
+                       
+                        <p><b><font size=3%>Password</font></b></p>
+                        <input type="password" class="resizedTextbox" name="Password" style="background: #FAFBFF; text-align: center; border: 3px #E6E8ED solid;border-radius: 6px;"> 
+               </div> 
+               </div> 
+              <div class ="item7">
+               <button><img src="~/img/SignIn.jpg" width="100%" height="100%" ></button>    
+               </div>    
+               <div class ="item6">  
+              <p> <b><font size=3%>Not a member?</font></b>  
+              <b><font size=3%><a href="/Home/Register" style="color:red;">Register</font></b></a></p>
+            </div>
+         </div>
+        
+            
+         
+      </div>
+   
+      <div class="container1">
+      
+         <div class ="item2">
+          <img src="~/img/page12.jpg" width="100%" height="100%" >
+         </div>
+      </div>
+   </div>
+</body>
+</html>

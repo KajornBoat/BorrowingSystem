@@ -1,0 +1,135 @@
+@model IEnumerable<LockLock.Models.BookingModel>
+
+@{
+    ViewData["Title"] = "BookingRoom";
+}
+
+<link rel="stylesheet" href="~/css/user.css" />
+<script src="~/js/bookingRoom.js"></script>
+
+@functions {
+
+    public static String toTime(DateTime time)
+    {
+        var output = "";
+        output += time.ToString("dddd") + ", ";
+        output += time.ToString("dd") + " ";
+        output += time.ToString("MMMM") + " ";
+        output += time.ToString("yyyy") + " ";
+        output += time.ToString("HH") + ".00 - ";
+        output += time.AddHours(1).ToString("HH") + ".00";
+        return output;
+    }
+}
+
+@Html.Partial("Navbar", new NavbarModel{name= (string) TempData["name"],surname= (string) TempData["surname"],
+isUser=false })
+
+
+<div class="container">
+
+    <h1 class="topic-color text-center topOfContent">Blacklist</h1>
+
+    <table class="table sortable" id="bookingTable">
+        <thead>
+            <tr>
+                <th class="pointer-cursor" onclick="sortTable(0)"># &#9662</th>
+                <th class="pointer-cursor" onclick="sortTable(1)">ชื่ออุปกรณ์</th>
+                <th class="pointer-cursor">จำนวน</th>
+                <th class="pointer-cursor" onclick="sortTable(3)">ห้อง</th>
+                <th class="pointer-cursor" onclick="sortTable(4)">วัน-เวลา</th>
+                <th class="pointer-cursor" onclick="sortTable(5)">ชื่อ-นามสกุลผู้จอง</th>
+                <th class="pointer-cursor" onclick="sortTable(6)">สถานะ</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Select((value, i) => new { i, value }))
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.i)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.value.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.value.Num)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.value.RoomName)
+                    </td>
+                    <td>
+                        @foreach (var time in item.value.timeList)
+                        {
+                            @toTime(time)
+                            <br>
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.value.name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.value.status)
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-danger" onClick="toModalBlack('@(item.value.userID)')"
+                        data-toID="@item.value.userID">Blacklist</button>
+                        @* <form asp-action="add" asp-controller="Blacklist" asp-route-userID="@item.value.userID">
+                            <button type="submit">Blacklist</button>
+                            </form> *@
+                        @if (item.value.cancel)
+                        {
+                            <button type="button" class="btn btn-danger" onClick="toModalCancel('@(item.value.BookingID)')"
+                        data-toID="@item.value.BookingID">ยกเลิก</button>
+                            @* <form asp-action="cancle" asp-route-transactionID="@item.value.BookingID">
+                                <button type="submit">Cancle</button>
+                                </form> *@
+                        }
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+<!-- Modal -->
+<div class="modal" id="CancelModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <img src="~/img/close.png" alt="close" class="closebtn" id="modalClose">
+            </div>
+            <div class="modal-body text-center">
+                <img src="~/img/cancel.png" width="30%" alt="cancel">
+                <h3>ต้องการ</h3>
+                <h3>"ยกเลิกการจอง"</h3>
+                <br>
+                <form id="cancleForm" action="/BookingRoom/cancel" method="post">
+                    <button type="submit" class="btn btn-warning btn-popUp ">ยกเลิกการจอง</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="BlackModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <img src="~/img/close.png" alt="close" class="closebtn" id="modalBlackClose">
+            </div>
+            <div class="modal-body text-center">
+                <img src="~/img/blacklistModal.png" width="30%" alt="cancel">
+                <h3>ต้องการ</h3>
+                <h3>"Blacklist"</h3>
+                <br>
+                <form id="blackForm" action="/Blacklist/add" method="post">
+                    <button type="submit" class="btn btn-warning btn-popUp ">Blacklist</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
